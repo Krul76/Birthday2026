@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Krul's Ship Log - Birthday Voyage -</title>
+
+  <style>
+    :root {
+      --blue-deep: #2f79b7;
+      --blue-main: #61bde8;
+      --blue-light: #dff6ff;
+      --blue-pale: #f3fbff;
+      --white: #ffffff;
+      --navy-text: #285f86;
+      --soft-text: #5f8faa;
+      --line: #99d8f3;
+      --yellow: #fff4b8;
+      --pink: #ffd6ea;
+      --shadow: rgba(75, 154, 196, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--navy-text);
+      font-family:
+        "Hiragino Maru Gothic ProN",
+        "Hiragino Sans",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.9) 0 14%, transparent 32%),
+        radial-gradient(circle at 85% 12%, rgba(255, 244, 184, 0.55) 0 8%, transparent 24%),
+        linear-gradient(180deg, #dff7ff 0%, #f7fcff 42%, #d9f4ff 100%);
+      line-height: 1.8;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.45;
+      background-image:
+        linear-gradient(135deg, rgba(255,255,255,0.45) 25%, transparent 25%),
+        linear-gradient(225deg, rgba(255,255,255,0.45) 25%, transparent 25%),
+        linear-gradient(45deg, rgba(255,255,255,0.45) 25%, transparent 25%),
+        linear-gradient(315deg, rgba(255,255,255,0.45) 25%, rgba(255,255,255,0) 25%);
+      background-position: 12px 0, 12px 0, 0 0, 0 0;
+      background-size: 24px 24px;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site {
+      position: relative;
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: 28px 16px 48px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      border-radius: 32px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.9), rgba(239,250,255,0.88)),
+        linear-gradient(135deg, #bdefff, #ffffff);
+      box-shadow: 0 18px 42px var(--shadow);
+      text-align: center;
+      padding: 30px 18px 26px;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(97, 189, 232, 0.18);
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 190px;
+      height: 190px;
+      top: -82px;
+      left: -62px;
+    }
+
+    .hero::after {
+      width: 240px;
+      height: 240px;
+      right: -98px;
+      bottom: -112px;
+      background: rgba(255, 214, 234, 0.36);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 5px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      color: var(--blue-deep);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "✦";
+      color: var(--blue-main);
+      font-size: 11px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--blue-deep);
+      font-family:
+        "Georgia",
+        "Times New Roman",
+        "Yu Mincho",
+        serif;
+      font-size: clamp(31px, 8vw, 64px);
+      line-height: 1.08;
+      letter-spacing: 0.015em;
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      color: var(--soft-text);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .keyvisual {
+      margin: 24px auto 0;
+      overflow: hidden;
+      width: min(100%, 720px);
+      border: 2px solid rgba(255,255,255,0.95);
+      border-radius: 26px;
+      background: linear-gradient(135deg, #ffffff, #e2f7ff);
+      box-shadow: 0 14px 28px rgba(72, 151, 196, 0.16);
+    }
+
+    .keyvisual img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .keyvisual-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 360px;
+      padding: 28px;
+      color: #75adca;
+      font-weight: 700;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.82), rgba(219,245,255,0.75)),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(97, 189, 232, 0.10) 0,
+          rgba(97, 189, 232, 0.10) 12px,
+          rgba(255,255,255,0.25) 12px,
+          rgba(255,255,255,0.25) 24px
+        );
+      text-align: center;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 18px auto 0;
+    }
+
+    .nav a {
+      display: inline-block;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.82);
+      color: var(--blue-deep);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 6px 14px rgba(72, 151, 196, 0.10);
+    }
+
+    .section {
+      margin-top: 26px;
+      padding: 24px 18px;
+      border: 2px solid rgba(255,255,255,0.9);
+      border-radius: 28px;
+      background: rgba(255,255,255,0.86);
+      box-shadow: 0 14px 34px var(--shadow);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 16px;
+      color: var(--blue-deep);
+      font-size: 23px;
+      line-height: 1.35;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 12px;
+      height: 28px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--blue-main), #9fe9ff);
+      box-shadow: 0 0 0 5px rgba(97, 189, 232, 0.12);
+    }
+
+    .overview-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .overview-item {
+      padding: 15px 16px;
+      border: 1px solid #b8e7f7;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #ffffff, #f3fbff);
+    }
+
+    .overview-label {
+      display: block;
+      color: var(--blue-main);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    .overview-main {
+      display: block;
+      margin-top: 3px;
+      color: var(--blue-deep);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .menu-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .menu-card {
+      position: relative;
+      overflow: hidden;
+      padding: 18px 16px;
+      border: 1px solid #b8e7f7;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.96), rgba(244,252,255,0.96));
+    }
+
+    .menu-card::after {
+      content: "";
+      position: absolute;
+      right: -28px;
+      top: -28px;
+      width: 92px;
+      height: 92px;
+      border-radius: 999px;
+      background: rgba(97, 189, 232, 0.12);
+      pointer-events: none;
+    }
+
+    .menu-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .menu-name {
+      margin: 0;
+      color: var(--blue-deep);
+      font-size: 19px;
+      line-height: 1.45;
+    }
+
+    .price {
+      flex: 0 0 auto;
+      display: inline-block;
+      padding: 3px 11px;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: #3779a6;
+      font-weight: 900;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .menu-text {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: var(--soft-text);
+      font-size: 14px;
+    }
+
+    .benefits {
+      position: relative;
+      z-index: 1;
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      color: var(--soft-text);
+      font-size: 14px;
+    }
+
+    .benefits li {
+      padding-left: 1.3em;
+      text-indent: -1.3em;
+    }
+
+    .benefits li::before {
+      content: "⚓";
+      margin-right: 0.35em;
+      color: var(--blue-main);
+    }
+
+    .plan-steps {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .step {
+      padding: 10px 12px;
+      border-radius: 15px;
+      background: #f2fbff;
+      color: var(--soft-text);
+      font-size: 14px;
+    }
+
+    .step strong {
+      color: var(--blue-deep);
+    }
+
+    .cheki-grid {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .cheki-item {
+      padding: 9px 12px;
+      border: 1px dashed #9edcf5;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.72);
+      color: var(--soft-text);
+      font-size: 14px;
+    }
+
+    .cheki-item strong {
+      color: var(--blue-deep);
+    }
+
+    .period-box {
+      margin-bottom: 16px;
+      padding: 15px 16px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #e6f8ff, #ffffff);
+      border: 1px solid #b8e7f7;
+      text-align: center;
+    }
+
+    .period-box .date {
+      display: block;
+      color: var(--blue-deep);
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .period-box .caption {
+      display: block;
+      margin-top: 2px;
+      color: var(--soft-text);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .message-box {
+      padding: 22px 17px;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(235,249,255,0.86));
+      border: 1px solid #b8e7f7;
+      text-align: center;
+    }
+
+    .message-box p {
+      margin: 0;
+      color: var(--navy-text);
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding: 24px 16px 12px;
+      color: #6c9fbd;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .footer-title {
+      margin: 0 0 6px;
+      color: var(--blue-deep);
+      font-family:
+        "Georgia",
+        "Times New Roman",
+        "Yu Mincho",
+        serif;
+      font-size: 18px;
+      letter-spacing: 0.03em;
+    }
+
+    .top-link {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+      color: var(--blue-deep);
+      text-decoration: none;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(72, 151, 196, 0.20);
+    }
+
+    @media (min-width: 720px) {
+      .site {
+        padding: 44px 22px 60px;
+      }
+
+      .hero {
+        padding: 44px 36px 34px;
+      }
+
+      .section {
+        padding: 30px 30px;
+      }
+
+      .overview-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .menu-list.two {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cheki-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .menu-head {
+        display: block;
+      }
+
+      .price {
+        margin-top: 6px;
+      }
+
+      .section-title {
+        font-size: 21px;
+      }
+
+      .keyvisual-placeholder {
+        min-height: 260px;
+      }
+    }
+  </style>
+</head>
+
+<body id="top">
+  <main class="site">
+
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">Birthday Event 2026</div>
+
+        <h1>Krul's Ship Log<br>- Birthday Voyage -</h1>
+
+        <p class="subtitle">
+          青い海へ、特別な一日を記録するバースデーボヤージュ。
+        </p>
+
+        <div class="keyvisual">
+          <!--
+            キービジュアル画像を入れる場合：
+            imagesフォルダに keyvisual.jpg を入れて、下のimgタグを使ってください。
+
+            画像がまだない時は、下の <div class="keyvisual-placeholder"> を残してOK。
+            画像を入れたら placeholder を消して、imgタグのコメントを外してください。
+          -->
+
+          <!-- <img src="images/keyvisual.jpg" alt="Krul Birthday Key Visual"> -->
+
+          <div class="keyvisual-placeholder">
+            Key Visual Area<br>
+            ここにキービジュアル画像を入れます
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="ページ内メニュー">
+          <a href="#overview">開催概要</a>
+          <a href="#menu">メニュー</a>
+          <a href="#limited">限定メニュー</a>
+          <a href="#period">誕生日期間</a>
+          <a href="#message">一言</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="section" id="overview">
+      <h2 class="section-title">開催概要</h2>
+
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-label">DATE</span>
+          <span class="overview-main">2026年7月5日（日）</span>
+        </div>
+
+        <div class="overview-item">
+          <span class="overview-label">TIME</span>
+          <span class="overview-main">15:00〜23:30</span>
+        </div>
+
+        <div class="overview-item">
+          <span class="overview-label">PLACE</span>
+          <span class="overview-main">Twilight Rouge</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <h2 class="section-title">メニュー</h2>
+
+      <div class="menu-list">
+
+        <article class="menu-card">
+          <div class="menu-head">
+            <h3 class="menu-name">☆ オリシャン</h3>
+            <span class="price">30,000R</span>
+          </div>
+
+          <p class="menu-text">
+            チャーム・ブロマ①②付き
+          </p>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-head">
+            <h3 class="menu-name">☆ その他ボトル特典</h3>
+          </div>
+
+          <ul class="benefits">
+            <li>28,000R〜：開栓動画</li>
+            <li>70,000R〜：上記 + 先輩の似顔絵色紙</li>
+            <li>100,000R〜：上記 + ASMRボイス動画</li>
+          </ul>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-head">
+            <h3 class="menu-name">☆ Aプラン</h3>
+            <span class="price">30,000R</span>
+          </div>
+
+          <p class="menu-text">
+            3時間の席確保＆オリシャン
+          </p>
+
+          <div class="plan-steps">
+            <div class="step">
+              <strong>1枠：</strong>チャーム・ブロマ①②
+            </div>
+            <div class="step">
+              <strong>2枠：</strong>上記 + ブロマ③ + スマホ壁紙12枚
+            </div>
+            <div class="step">
+              <strong>3枠：</strong>上記 + 手紙
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-head">
+            <h3 class="menu-name">☆ Bプラン</h3>
+            <span class="price">6,400R</span>
+          </div>
+
+          <ul class="benefits">
+            <li>1時間の席確保</li>
+            <li>BDドリンク</li>
+            <li>BD特別チェキ2枚</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="limited">
+      <h2 class="section-title">限定メニュー</h2>
+
+      <div class="menu-list">
+
+        <article class="menu-card">
+          <div class="menu-head">
+            <h3 class="menu-name">☆ BD特別お絵描きチェキ</h3>
+            <span class="price">各 2,200R</span>
+          </div>
+
+          <p class="menu-text">
+            生誕限定の特別衣装チェキです。お気に入りの衣装を選んで、特別な一枚を一緒に残してください。
+          </p>
+
+          <div class="cheki-grid">
+            <div class="cheki-item"><strong>A：</strong>BD衣装</div>
+            <div class="cheki-item"><strong>B：</strong>チャイナ</div>
+            <div class="cheki-item"><strong>C：</strong>ロリータ</div>
+            <div class="cheki-item"><strong>D：</strong>地雷系</div>
+            <div class="cheki-item"><strong>E：</strong>私服おでかけ</div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-head">
+            <h3 class="menu-name">☆ ボンボヤージュオプション</h3>
+            <span class="price">1,000R</span>
+          </div>
+
+          <p class="menu-text">
+            航海に出発する先輩へ、クルルからの特別なボンボヤージュをお届けします。
+            生誕の思い出に、いつもより少し特別な演出を楽しんでください。
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="period">
+      <h2 class="section-title">誕生日期間</h2>
+
+      <div class="period-box">
+        <span class="date">7月3日（金）〜7月9日（木）</span>
+        <span class="caption">Birthday Special Week</span>
+      </div>
+
+      <div class="menu-list two">
+
+        <article class="menu-card">
+          <div class="menu-head">
+            <h3 class="menu-name">フードメニュー<br>マリンひやちゅ〜</h3>
+          </div>
+
+          <p class="menu-text">
+            夏の航海にぴったりな、ひんやり爽やかな期間限定フードです。
+            青い海をイメージした、クルルのバースデーだけの特別メニュー。
+          </p>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-head">
+            <h3 class="menu-name">ドリンクメニュー<br>常夏オーシャンブルー</h3>
+          </div>
+
+          <p class="menu-text">
+            きらきらした海を閉じ込めたような、爽やかなブルードリンクです。
+            生誕期間だけの特別な一杯で、一緒に乾杯してください。
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="message">
+      <h2 class="section-title">一言</h2>
+
+      <div class="message-box">
+        <p>
+          今年の生誕は、先輩と一緒に特別な航海の記録を残せたら嬉しいです。<br>
+          たくさん準備してお待ちしております。<br>
+          クルルの大切な一日を、一緒に過ごしてください🤍
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="footer-title">Krul's Ship Log - Birthday Voyage -</p>
+      <p>
+        2026.07.05 / Twilight Rouge<br>
+        © Krul Birthday Voyage
+      </p>
+    </footer>
+
+  </main>
+
+  <a href="#top" class="top-link" aria-label="ページ上部へ戻る">↑</a>
+</body>
+</html>
